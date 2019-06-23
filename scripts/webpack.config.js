@@ -9,9 +9,9 @@ module.exports = {
     airplane: path.resolve(__dirname, "..", "src", "airplane", "index.js")
   },
   output: {
-    path: path.resolve(__dirname, "..", "docs"),
+    path: path.resolve(__dirname, "..", "public"),
     filename: "[name].[hash].js",
-    publicPath: "/docs/"
+    publicPath: "/public/"
   },
   module: {
     rules: [
