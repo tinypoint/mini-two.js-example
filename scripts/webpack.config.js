@@ -1,6 +1,7 @@
 const webpack = require("webpack");
 const path = require("path");
 const fs = require("fs");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development",
@@ -8,9 +9,9 @@ module.exports = {
     airplane: path.resolve(__dirname, "..", "src", "airplane", "index.js")
   },
   output: {
-    path: path.resolve(__dirname, "..", "public"),
-    filename: "[name].js",
-    publicPath: "/public/"
+    path: path.resolve(__dirname, "..", "docs"),
+    filename: "[name].[hash].js",
+    publicPath: "/docs/"
   },
   module: {
     rules: [
@@ -50,9 +51,14 @@ module.exports = {
   resolve: {
     extensions: [".js", ".json", ".css", ".scss"]
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()],
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, "..", "htmls", "airplane.html"),
+      filename: "airplane.html"
+    })
+  ],
   serve: {
-    contentBase: path.join(__dirname, "..", "public"),
     hot: true
   }
 };
